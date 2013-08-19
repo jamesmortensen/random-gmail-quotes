@@ -59,6 +59,11 @@ if(window.location.hostname.match(/mail.google.com/) != null) {
         
         randomQuoteModule.init = true;
         randomQuoteModule.quotes = m_quotes;
+
+        // TODO: Use chrome.storage to store user-defined signatures and load them instead of the defaults
+        if(false && window.localStorage.getItem("randomSigQuotes") != null) {
+            randomQuoteModule.quotes = JSON.parse(window.localStorage.getItem("randomSigQuotes"));
+        }
     	
 
         with_jquery(function($, randomQuoteModule) {

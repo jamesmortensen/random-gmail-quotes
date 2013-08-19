@@ -14,7 +14,7 @@ m_quotes = [
             "- \"<i>Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live.\" - Rick Osborne</i>",
             "- \"<i>The first 90% of the code accounts for the first 90% of the development time. The remaining 10% of the code accounts for the other 90% of the development time.\" - Tom Cargill, Creator of the <a href=\"http://en.wikipedia.org/wiki/Ninety-ninety_rule\">Ninety-ninety rule</a></i>",
             "- \"<i>Computer Science is no more about computers than astronomy is about telescopes\" - Edsger Dijkstra</i>",
-            "- \"<i>Commenting your code is like cleaning your bathroom - you never want to do it, but it really does create a more pleasant experience for you and your guests.\" - Ryan Campbell</i>",
+            "- \"<i><a href=\"http://www.particletree.com/features/successful-strategies-for-commenting-code/\">Commenting your code is like cleaning your bathroom - you never want to do it, but it really does create a more pleasant experience for you and your guests.\" - Ryan Campbell, Co-Founder of Wufoo</a></i>",
             "- \"<i>A clever person solves a problem. A wise person avoids it.\" - Albert Einstein</i>",
             "- \"<i>What's the simplest thing that could possibly work?\" - Ward Cunningham</i>",
             " - \"<i><a href=\"http://en.wiktionary.org/wiki/if_all_you_have_is_a_hammer,_everything_looks_like_a_nail\">When all you have is a hammer, everything starts to look like a nail\" - Abraham Maslow</a></i>",
