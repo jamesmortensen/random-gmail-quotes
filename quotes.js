@@ -21,5 +21,7 @@ m_quotes = [
             " - \"<i>Good code is its own best documentation. As you're about to add a comment, ask yourself, 'How can I improve the code so that this comment isn't needed?' Improve the code and then document it to make it even clearer.\" - Steve McConnell</i>",
             " - <i>'How do we convince people that in programming simplicity and clarity—in short: what mathematicians call \"elegance\"—are not a dispensable luxury, but a crucial matter that decides between success and failure?' - Edsger W. Dijkstra</i>",
             " - \"<i>Simplicity is prerequisite for reliability.\" - Edsger W. Dijkstra</i>",
-            " - \"<i>We will never implement some of the features requested, because we never want to be everything to everybody. That makes the interface too confusing and can easily take away more than it adds.\" - Chris Campbell, Co-Founder of Wufoo, in response to <a href=\"https://www.wufoo.com/forums/discussion/459/development-speed-is-too-slow/p1\">Development Speed is Too Slow</a></i>"
+            " - \"<i>We will never implement some of the features requested, because we never want to be everything to everybody. That makes the interface too confusing and can easily take away more than it adds.\" - Chris Campbell, Co-Founder of Wufoo, in response to <a href=\"https://www.wufoo.com/forums/discussion/459/development-speed-is-too-slow/p1\">Development Speed is Too Slow</a></i>",
+            " - \"<i>Too much order is really horrible. You've gotta balance it out with disorder and chaos.\" - Ben Chestnut, Founder of MailChimp</i>",
+            " - \"<i>Innovation and creativity comes from assembling pieces from other stuff in wierd ways.\" - Ben Chestnut, Founder of MailChimp</i>"
         ]

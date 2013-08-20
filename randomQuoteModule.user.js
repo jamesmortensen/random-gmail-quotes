@@ -71,34 +71,35 @@ if(window.location.hostname.match(/mail.google.com/) != null) {
             // this handles injecting the quote into the Gmail compose textarea
             function injectQuoteInTextarea() {
 
-                if($('[g_editable="true"]').hasClass('sigadded')) return;
+                var messageBox = null;
+                messageBox = $('[g_editable="true"]').eq($('[g_editable="true"]').length-1);
+
+                if(messageBox.hasClass('sigadded')) return;
 
                 // don't inject quotes in the textareas in the settings page, that's just not cool...
-                if($('[g_editable="true"]').attr('aria-label') == "Signature") return;
+                if(messageBox.attr('aria-label') != "Message Body") return;
 
-
-                var messageBox = null;
 
                 
+                
                 // there's no quote block, so inject at the bottom
-                if($('[g_editable="true"]').find('div.gmail_quote').html() == undefined && $('[g_editable="true"]').html() != undefined
-                      && $('[g_editable="true"]').parent().parent().parent().parent().parent().parent().parent().parent().parent().find('[aria-label="Show trimmed content"]').length == 0) {
+                if(messageBox.find('div.gmail_quote').html() == undefined && messageBox.html() != undefined
+                      && messageBox.parent().parent().parent().parent().parent().parent().parent().parent().parent().find('[aria-label="Show trimmed content"]').length == 0) {
                     
-
-                    $('[g_editable="true"]').addClass('sigadded');
-                    //$('[g_editable="true"]').append("<br>Quote goes here<br><br>");
                     
-                    messageBox = $('[g_editable="true"]');
+                    messageBox.addClass('sigadded');
                     messageBox.action = messageBox.append;
 
                 // saying no to injecting quoets in replies for now...
-                /*} else if($('[g_editable="true"]').html() != undefined) {
+                /*} else if(messageBox.html() != undefined 
+                        && messageBox.parent().parent().parent().parent().parent().parent().parent().parent().parent().find('[aria-label="Show trimmed content"]').length != 0) {
                     console.info("There's a quote, so let's go ahead and insert a quote before the reply...");
-                    $('[g_editable="true"]').addClass('sigadded');
-                    $('[g_editable="true"]').find('div.gmail_quote').before("Reply Sig goes here<br><br>");
-                    messageBox = $('[g_editable="true"]').find('div.gmail_quote');
+                    messageBox.addClass('sigadded');
+                    messageBox.find('div.gmail_quote').before("Reply Sig goes here<br><br>");
+                    messageBox.find('.gmail_extra').find('div[dir="ltr"]').append("HRYHRYR");
+                    //messageBox = $('[g_editable="true"]').find('div.gmail_quote');
                     messageBox.action = messageBox.before;
-                */
+                    messageBox=null;*/
 
                 } else {
 
@@ -137,5 +138,10 @@ if(window.location.hostname.match(/mail.google.com/) != null) {
     	}, randomQuoteModule);
             
     }, false);
+
+    // quick sanity check to make sure algorithm doesn't play favorites with any quotes
+    function sanityCheck() {
+        var a = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];var _t = 1376899008256; for(var i = 0; i <138; i++) { var index = ((_t+i) % m_quotes.length); console.log(index); a[index]++;}
+    }
 
 }
