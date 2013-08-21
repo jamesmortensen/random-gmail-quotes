@@ -23,5 +23,6 @@ m_quotes = [
             " - \"<i>Simplicity is prerequisite for reliability.\" - Edsger W. Dijkstra</i>",
             " - \"<i>We will never implement some of the features requested, because we never want to be everything to everybody. That makes the interface too confusing and can easily take away more than it adds.\" - Chris Campbell, Co-Founder of Wufoo, in response to <a href=\"https://www.wufoo.com/forums/discussion/459/development-speed-is-too-slow/p1\">Development Speed is Too Slow</a></i>",
             " - \"<i>Too much order is really horrible. You've gotta balance it out with disorder and chaos.\" - Ben Chestnut, Founder of MailChimp</i>",
-            " - \"<i>Innovation and creativity comes from assembling pieces from other stuff in wierd ways.\" - Ben Chestnut, Founder of MailChimp</i>"
+            " - \"<i>Innovation and creativity comes from assembling pieces from other stuff in wierd ways.\" - Ben Chestnut, Founder of MailChimp</i>",
+            " - \"<i>A login and an account aren't the same thing. A login is just a key, and your account may very well have several doors.\" - Anonymous, In Regards to OAuth2</i>"
         ]
