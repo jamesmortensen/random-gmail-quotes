@@ -25,5 +25,7 @@ m_quotes = [
             " - \"<i>Too much order is really horrible. You've gotta balance it out with disorder and chaos.\" - Ben Chestnut, Founder of MailChimp</i>",
             " - \"<i>Innovation and creativity comes from assembling pieces from other stuff in wierd ways.\" - Ben Chestnut, Founder of MailChimp</i>",
             " - \"<i>A login and an account aren't the same thing. A login is just a key, and your account may very well have several doors.\" - Anonymous, In Regards to OAuth2</i>",
-            " - \"<i>Be conservative in what you send, be liberal in what you accept.\" - Jon Postel, Creator of the TCP protocol and the <a href=\"http://en.wikipedia.org/wiki/Robustness_principle\">The Robustness Principle</a></i>"
+            " - \"<i>Be conservative in what you send, be liberal in what you accept.\" - Jon Postel, Creator of the TCP protocol and <a href=\"http://en.wikipedia.org/wiki/Robustness_principle\">The Robustness Principle</a></i>",
+            " - \"<i>Source control is the very bedrock of software development. Without some sort of version control system in place, you can't reasonably call yourself a software engineer.\" - <a href=\"http://www.codinghorror.com/blog/2007/10/software-branching-and-parallel-universes.html\">Jeff Atwood, Blogger and Stack Overflow Co-Founder</i></a>",
+            " - 'But as you know I don’t really make the decisions around here, because “management is a support function,” so they took all the interns, all <i>six</i> of them, and set off to build a product...' - <a href=\"http://www.joelonsoftware.com/items/2010/03/17.html\">Joel Spolsky, Blogger and Stack Overflow CEO/Co-Founder</a>"
         ];
