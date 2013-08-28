@@ -17,7 +17,7 @@ m_quotes = [
             "- \"<i><a href=\"http://www.particletree.com/features/successful-strategies-for-commenting-code/\">Commenting your code is like cleaning your bathroom - you never want to do it, but it really does create a more pleasant experience for you and your guests.\" - Ryan Campbell, Co-Founder of Wufoo</a></i>",
             "- \"<i>A clever person solves a problem. A wise person avoids it.\" - Albert Einstein</i>",
             "- \"<i>What's the simplest thing that could possibly work?\" - Ward Cunningham</i>",
-            " - \"<i><a href=\"http://en.wiktionary.org/wiki/if_all_you_have_is_a_hammer,_everything_looks_like_a_nail\">When all you have is a hammer, everything starts to look like a nail\" - Abraham Maslow</a></i>",
+            " - <i><a href=\"http://en.wiktionary.org/wiki/if_all_you_have_is_a_hammer,_everything_looks_like_a_nail\">\"When all you have is a hammer, everything starts to look like a nail\" - Abraham Maslow</a></i>",
             " - \"<i>Good code is its own best documentation. As you're about to add a comment, ask yourself, 'How can I improve the code so that this comment isn't needed?' Improve the code and then document it to make it even clearer.\" - Steve McConnell</i>",
             " - <i>'How do we convince people that in programming simplicity and clarity—in short: what mathematicians call \"elegance\"—are not a dispensable luxury, but a crucial matter that decides between success and failure?' - Edsger W. Dijkstra</i>",
             " - \"<i>Simplicity is prerequisite for reliability.\" - Edsger W. Dijkstra</i>",
@@ -27,5 +27,9 @@ m_quotes = [
             " - \"<i>A login and an account aren't the same thing. A login is just a key, and your account may very well have several doors.\" - Anonymous, In Regards to OAuth2</i>",
             " - \"<i>Be conservative in what you send, be liberal in what you accept.\" - Jon Postel, Creator of the TCP protocol and <a href=\"http://en.wikipedia.org/wiki/Robustness_principle\">The Robustness Principle</a></i>",
             " - \"<i>Source control is the very bedrock of software development. Without some sort of version control system in place, you can't reasonably call yourself a software engineer.\" - <a href=\"http://www.codinghorror.com/blog/2007/10/software-branching-and-parallel-universes.html\">Jeff Atwood, Blogger and Stack Overflow Co-Founder</i></a>",
-            " - 'But as you know I don’t really make the decisions around here, because “management is a support function,” so they took all the interns, all <i>six</i> of them, and set off to build a product...' - <a href=\"http://www.joelonsoftware.com/items/2010/03/17.html\">Joel Spolsky, Blogger and Stack Overflow CEO/Co-Founder</a>"
+            " - 'But as you know I don’t really make the decisions around here, because “management is a support function,” so they took all the interns, all <i>six</i> of them, and set off to build a product...' - <a href=\"http://www.joelonsoftware.com/items/2010/03/17.html\">Joel Spolsky, Blogger and Stack Overflow CEO/Co-Founder</a>",
+            " - <i>\"Being nice to people, building those relationships early on in your career actually helps in making people want to work with you and believing in your vision.\" - Girish Mathrubootham, CEO/Founder of Freshdesk</i>",
+            " - <i>\"Don't be a jerk. Even if you're brilliant, don't be a brilliant jerk.\" - Girish Mathrubootham, CEO/Founder of Freshdesk</i>",
+            " - <i>\"You have to be very selective about which wheels you’re going to reinvent. Trying to do everything yourself from scratch is the road to poverty.\" - <a href=\"http://www.johndcook.com/blog/2010/05/20/in-defense-of-reinventing-wheels/\">John D. Cook, In Defense of Reinventing Wheels</a></i>",
+            " - <i>\"A startup is a human institution designed to deliver a product or service in conditions of extreme uncertainty\" - Eric Ries</i>" 
         ];
