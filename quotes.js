@@ -31,5 +31,6 @@ m_quotes = [
             " - <i>\"Being nice to people, building those relationships early on in your career actually helps in making people want to work with you and believing in your vision.\" - Girish Mathrubootham, CEO/Founder of Freshdesk</i>",
             " - <i>\"Don't be a jerk. Even if you're brilliant, don't be a brilliant jerk.\" - Girish Mathrubootham, CEO/Founder of Freshdesk</i>",
             " - <i>\"You have to be very selective about which wheels you’re going to reinvent. Trying to do everything yourself from scratch is the road to poverty.\" - <a href=\"http://www.johndcook.com/blog/2010/05/20/in-defense-of-reinventing-wheels/\">John D. Cook, In Defense of Reinventing Wheels</a></i>",
-            " - <i>\"A startup is a human institution designed to deliver a product or service in conditions of extreme uncertainty\" - Eric Ries</i>" 
+            " - <i>\"A startup is a human institution designed to deliver a product or service in conditions of extreme uncertainty\" - Eric Ries</i>",
+            " - <i>\"Program testing can be used to show the presence of bugs, but never to show their absence!\" - <a href=\"http://en.wikiquote.org/wiki/Edsger_W._Dijkstra\">Edsger W. Dijkstra</a></i>"
         ];
