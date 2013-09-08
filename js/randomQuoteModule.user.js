@@ -14,27 +14,23 @@
 /* 
  * Copyright 2013, James Mortensen
  *
- * I made this extension because I couldn't find a tool to let me randomly inject my own user-selected
- * quotes into my email signature. I specifically wanted the quotes to be hand-selected. 
- *
- * Since there wasn't an existing solution, I made one.
- *
- * To replace the quotes with your own, edite the quotes.js file. You may use HTML markup, but be sure
- * to escape your quotation marks!
- *
  * In case it isn't clear, this is licensed under the MIT License. So do with this what you please.
  *
  */
 
+var randomQuoteModule = {};
 
 // bug: exclude/include userscript headers don't work in Chrome, so we filter manually
 if(window.location.hostname.match(/mail.google.com/) != null) {
 
+    // insert the browser action icon in the address bar
+    chrome.extension.sendRequest({}, function(response) {});
 
-    var randomQuoteModule = {
+     randomQuoteModule = {
         init: false,
         messageBox: null,
-        quotes: null        
+        quotes: null,
+        loaded: false
     };
 
  
@@ -52,18 +48,35 @@ if(window.location.hostname.match(/mail.google.com/) != null) {
 		document.body.appendChild(script);
 	};
 
+    // pull the quotes out of storage, or load the defaults from quotes.js if none found
+    chrome.storage.local.get(null, function(items) {
+        console.log("items = " + JSON.stringify(items) );iii = items;
+        if(items["m_quotes"] == null) {
+            items["m_quotes"] = m_quotes;
+            chrome.storage.local.set(items);
+        }
+        m_quotes = items["m_quotes"];
+
+        randomQuoteModule.quotesLoaded = true;
+        if(randomQuoteModule.pageLoaded == true && randomQuoteModule.quotesLoaded == true) {
+            loadStageTwo();
+        }
+
+    });
 
     window.addEventListener("load", function() { 
+        randomQuoteModule.pageLoaded = true;
+        if(randomQuoteModule.pageLoaded == true && randomQuoteModule.quotesLoaded == true) {
+            loadStageTwo();
+        } 
+    });
         
+
+    function loadStageTwo() {
         if(randomQuoteModule.init == true) return;
         
         randomQuoteModule.init = true;
         randomQuoteModule.quotes = m_quotes;
-
-        // TODO: Use chrome.storage to store user-defined signatures and load them instead of the defaults
-        if(false && window.localStorage.getItem("randomSigQuotes") != null) {
-            randomQuoteModule.quotes = JSON.parse(window.localStorage.getItem("randomSigQuotes"));
-        }
     	
 
         with_jquery(function($, randomQuoteModule) {
@@ -125,6 +138,12 @@ if(window.location.hostname.match(/mail.google.com/) != null) {
 
                 return randomQuoteModule.quotes[index];
             }            
+
+            // TODO: trying to allow updating the quotes without reloading -- in progress
+            // top.window.updateRandomQuotes = function(quotes) {
+
+            //     randomQuoteModule.quotes = quotes;
+            // }
             
 
             // when DOM nodes are inserted in the page, look for a compose window and inject
@@ -137,7 +156,7 @@ if(window.location.hostname.match(/mail.google.com/) != null) {
              
     	}, randomQuoteModule);
             
-    }, false);
+    };
 
     // quick sanity check to make sure algorithm doesn't play favorites with any quotes
     function sanityCheck() {
