@@ -2,7 +2,7 @@
    "content_scripts": [ {
       "exclude_globs": [  ],
       "exclude_matches": [  ],
-      "include_globs": [ "*//*google.com*" ],
+      "include_globs": [ "*//*google.com*", "*//*stackapps.com/users/*", "*//*stackoverflow.com/users/*" ],
       "js": ["js/lib/jquery.min.map", "js/lib/jquery.min.js",
           "quotes.js", "js/randomQuoteModule.user.js"
       ],

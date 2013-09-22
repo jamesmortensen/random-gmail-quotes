@@ -1,0 +1,36 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+  <meta charset="utf-8"> 
+  <title>Add Stack Exchange Flair</title> 
+  <link href="css/bootstrap.min.css" rel="stylesheet"> 
+  <link href="css/quoteManagerPageAction.css" rel="stylesheet">
+  <style>
+      .seflair {
+        margin-left:25%;
+      }
+      .modal-footer .btn+.btn {
+          margin-right: 0px;
+      }
+  </style>
+  <script type="text/javascript" src="js/seFlairPageAction.js"></script>
+</head>
+<body>
+  <div id="quotes_modal" class="fade in" style="display: block; ">
+    <div class="modal-header">
+      <a class="close" data-dismiss="modal" data-action="cancel">×</a>
+      <h3><img class="icon" src="images/S-logo-48.png" alt="Signature Logo" />Add Stack Exchange Flair</h3>
+    </div>
+    <div class="modal-body">
+      <div class="seflair"></div>
+
+    </div>
+    <div class="modal-footer">
+      <a href="#" data-action="save" class="btn btn-primary">Use as Gmail signature instead of quotes</a>
+      <a href="#" data-action="cancel" class="btn" data-dismiss="modal">No, keep quotes as signature</a>
+    </div>
+  </div>
+  <script src="js/lib/jquery.min.js"></script>
+</body>
+</html>
+
