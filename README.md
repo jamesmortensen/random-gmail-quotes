@@ -16,4 +16,10 @@
   In case it isn't clear, this is licensed under the MIT License. So do with this what you please.
  
  
+// @history        0.9 initial beta release to the public in Github
 
+// @history        0.9.2 initial beta release to the public in the Chrome Web Store with Stack Exchange flair import support
+
+I added in the ability for Stack Exchange users to instantly replace the quotes with their Stack Exchange flair. Just go to 
+your Stack Overflow profile page and click the page action icon next to the "Favorites" star in the address bar, when the page
+action loads up your flair, click "Use as Gmail signature instead of quotes".

@@ -6,7 +6,7 @@
 // @homepage       http://blog.opensourceopportunities.com
 // @copyright      2013, James Mortensen (http://stackoverflow.com/users/552792/jmort253) 
 // @license        MIT License or BSD License
-// @version        0.9
+// @version        0.9.2
 // @include        https://*google.com/*
 // @history        0.9 initial beta release to the public in Github
 // @history        0.9.2 initial beta release to the public in the Chrome Web Store with Stack Exchange flair import support
