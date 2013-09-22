@@ -30,7 +30,9 @@ window.addEventListener("load", function() {
 			items["m_quotes"] = [$('[data-value="quotes"]').val()];
 		}
 		//items["m_quotes"] = ["<img src=\"http://se-flair.appspot.com/png/921455be-18e4-481e-ba1a-ba1d30998061/\" />","James was here!!!!!!"];
-		chrome.storage.local.set(items);
+		chrome.storage.local.set(items, function() {
+			window.close();
+		});
 		//chrome.tabs.executeScript(null,{code:"document.body.dataset['quote'] = 'fasfdtest';document.body.style.backgroundColor='orange';"});
 
 	});
