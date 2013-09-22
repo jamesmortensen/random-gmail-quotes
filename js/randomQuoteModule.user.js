@@ -8,7 +8,8 @@
 // @license        MIT License or BSD License
 // @version        0.9
 // @include        https://*google.com/*
-// @history        0.9 initial beta release to the public
+// @history        0.9 initial beta release to the public in Github
+// @history        0.9.2 initial beta release to the public in the Chrome Web Store with Stack Exchange flair import support
 // ==/UserScript==
 
 /* 

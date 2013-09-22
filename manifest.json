@@ -12,7 +12,7 @@
    "converted_from_user_script": true,
    "description": "Chrome Extension to inject random quotes in your Gmail signature.",
    "name": "Random Gmail Signature Quotes",
-   "version": "0.9.1",
+   "version": "0.9.2",
    "manifest_version": 2,
    "permissions": ["tabs", "storage"],
    "web_accessible_resources": ["js/lib/jquery.min.map"],
