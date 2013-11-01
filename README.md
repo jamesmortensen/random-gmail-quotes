@@ -1,5 +1,7 @@
  
-  Install [Random Signature Quotes for Gmail™](https://chrome.google.com/webstore/detail/random-signature-quotes-f/kbjehpegjjfajhnommoeefdjhlhbgojh) from the Chrome Web Store
+  Install [Random Signature Quotes for Gmail™](https://chrome.google.com/webstore/detail/random-signature-quotes-f/kbjehpegjjfajhnommoeefdjhlhbgojh) from the Chrome Web Store.
+  
+  ----
   
   Copyright 2013, James Mortensen
  
