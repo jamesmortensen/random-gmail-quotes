@@ -1,4 +1,8 @@
  
+  Install [Random Signature Quotes for Gmail™](https://chrome.google.com/webstore/detail/random-signature-quotes-f/kbjehpegjjfajhnommoeefdjhlhbgojh) from the Chrome Web Store.
+  
+  ----
+  
   Copyright 2013, James Mortensen
  
   I made this extension because I couldn't find a tool to let me randomly inject my own user-selected
