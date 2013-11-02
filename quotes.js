@@ -34,5 +34,6 @@ m_quotes = [
             " - <i>\"A startup is a human institution designed to deliver a product or service in conditions of extreme uncertainty\" - Eric Ries</i>",
             " - <i>\"Program testing can be used to show the presence of bugs, but never to show their absence!\" - <a href=\"http://en.wikiquote.org/wiki/Edsger_W._Dijkstra\">Edsger W. Dijkstra</a></i>",
             " - <i>\"Quality is not an act, it is a habit.\" - Aristotle</i>",
-            " - <i>\"I wish someone had told me 5 years ago how simple innovation can be: study a task someone has, break it out into its individual steps, eliminate as many steps as possible.\" - Nate Kontny, Founder of Draft</i>"
+            " - <i>\"I wish someone had told me 5 years ago how simple innovation can be: study a task someone has, break it out into its individual steps, eliminate as many steps as possible.\" - Nate Kontny, Founder of Draft</i>",
+            " - <i>\"Most people just make the mistake that it should be simple to design simple things. In reality, the effort required to design something is inversely proportional to the simplicity of the result. As architectural styles go, REST is very simple.\" - Roy T. Fielding, author of Architectural Styles and the Design of Network-based Software Architectures and co-founder of the Apache HTTP Server project</i>"
         ];
