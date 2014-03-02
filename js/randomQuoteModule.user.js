@@ -1,18 +1,4 @@
-﻿// ==UserScript==
-// @name           Random Gmail Signature Quotes 
-// @namespace      http://google.com 
-// @author         jmort253 (http://stackoverflow.com/users/552792)
-// @description    Chrome Extension to inject random quotes into Gmail signatures.
-// @homepage       http://blog.opensourceopportunities.com
-// @copyright      2013, James Mortensen (http://stackoverflow.com/users/552792/jmort253) 
-// @license        MIT License or BSD License
-// @version        0.9.2
-// @include        https://*google.com/*
-// @history        0.9 initial beta release to the public in Github
-// @history        0.9.2 initial beta release to the public in the Chrome Web Store with Stack Exchange flair import support
-// ==/UserScript==
-
-/* 
+﻿/* 
  * Copyright 2013, James Mortensen
  *
  * In case it isn't clear, this is licensed under the MIT License. So do with this what you please.
@@ -37,7 +23,7 @@ if(window.location.hostname.match(/mail.google.com/) != null) {
  
     // load jQuery from CDN...
     var script = document.createElement("script");
-    script.setAttribute("src","//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js");
+    script.setAttribute("src","//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js");
     document.getElementsByTagName("head")[0].appendChild(script);
 
 
@@ -161,7 +147,7 @@ if(window.location.hostname.match(/mail.google.com/) != null) {
 
     // quick sanity check to make sure algorithm doesn't play favorites with any quotes
     function sanityCheck() {
-        var a = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];var _t = 1376899008256; for(var i = 0; i <138; i++) { var index = ((_t+i) % m_quotes.length); console.log(index); a[index]++;}
+        var a=[];for(var i = 0;i<m_quotes.length;i++) { a.push(0);}var _t = 1376899008256; for(var i = 0; i <138; i++) { var index = ((_t+i) % m_quotes.length); console.log(index); a[index]++;}
     }
 
 }
