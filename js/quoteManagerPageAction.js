@@ -33,7 +33,10 @@ THE SOFTWARE.
 
 var m_saveTimeout = 0;
 
-var keyFilterer = new KeyFilterer();
+var keyFilterer;
+if(typeof KeyFilterer !== 'undefined')
+    keyFilterer = new KeyFilterer();
+
 
 function getListQuoteTemplate() {
     return '<li class="list-group-item quote"><input /><span class="remove-quote glyphicon glyphicon-minus"></span></li>';
