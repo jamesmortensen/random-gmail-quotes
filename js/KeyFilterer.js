@@ -45,7 +45,7 @@ function KeyFilterer() {
 	var up = 38;
 	var right = 39;
 	var down = 40;
-	var filterTheseKeys = [
+	var keysToFilter = [
 		shiftKey,
 		ctrlKey,
 		altKey,
@@ -55,7 +55,7 @@ function KeyFilterer() {
 		right,
 		down
 	];
-	filterTheseKeys.sort();
+	keysToFilter.sort();
 
 
 	/**
@@ -65,6 +65,6 @@ function KeyFilterer() {
 	 * @return {Boolean} true if keyCode is not in the filter; otherwise, false.
 	 */
 	this.isValidKey = function(keyCode) {
-		return (filterTheseKeys.indexOf(keyCode) === -1);
+		return (keysToFilter.indexOf(keyCode) === -1);
 	};
 }
