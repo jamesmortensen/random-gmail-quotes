@@ -5,6 +5,7 @@
   <title>Signature Quote Manager</title> 
   <link href="css/bootstrap.min.css" rel="stylesheet"> 
   <link href="css/quoteManagerPageAction.css" rel="stylesheet">
+  <script type="text/javascript" src="js/KeyFilterer.js"></script>
   <script type="text/javascript" src="js/quoteManagerPageAction.js"></script>
 </head>
 <body>
@@ -40,8 +41,11 @@
     </div>
     <div class="modal-footer">
       <a href="#" data-action="json-panel" class="link-left">JSON Panel</a>
-      <a href="#" data-action="save-list" class="btn btn-primary">Save</a>
-      <a href="#" data-action="cancel" class="btn" data-dismiss="modal">Cancel</a>
+      <span style="display:none" class="auto-save alert alert-success">
+        <span class="">Saving...</span>
+      </span>
+      <!-- <a href="#" data-action="save-list" class="btn btn-primary">Save</a>
+      <a href="#" data-action="cancel" class="btn" data-dismiss="modal">Cancel</a> -->
     </div>
   </div>
   <script src="js/lib/jquery-2.1.0.min.js"></script>

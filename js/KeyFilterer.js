@@ -1,10 +1,10 @@
-// background.js
+// KeyFilterer.js
 
 /**
 
 The MIT License (MIT)
 
-Copyright (c) 2013, 2014 James Mortensen
+Copyright (c) 2014 James Mortensen
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -26,23 +26,45 @@ THE SOFTWARE.
 
 */
 
- 
 
-function onRequest(request, sender, sendResponse) {
-  // Show the page action for the tab that the sender (content script)
-  // was on.
-  chrome.pageAction.show(sender.tab.id);
+/**
+ * Helps determine if some modifier keys should fire off events. This is useful to 
+ * prevent certain modifier keys from firing off events needlessly. Think of this
+ * as a keyCode blacklist.
+ */
+function KeyFilterer() {
 
-  // Return nothing to let the connection be cleaned up.
-  sendResponse({});
-};
+	/**
+	 * List of keyup keyCodes to filter out.
+	 */
+	var shiftKey = 16;
+	var ctrlKey = 17;
+	var altKey = 18;
+	var cmdKey = 91;
+	var left = 37;
+	var up = 38;
+	var right = 39;
+	var down = 40;
+	var filterTheseKeys = [
+		shiftKey,
+		ctrlKey,
+		altKey,
+		cmdKey,
+		left,
+		up,
+		right,
+		down
+	];
+	filterTheseKeys.sort();
 
-// Listen for the content script to send a message to the background page.
-chrome.extension.onRequest.addListener(onRequest);
 
-
-
-chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
-    console.info("onMessage :: ");
-
-});
+	/**
+	 * Takes a keyCode and returns true if the key is not to be filtered out.
+	 *
+	 * @param {Integer} keyCode The keyCode to check against the filter.
+	 * @return {Boolean} true if keyCode is not in the filter; otherwise, false.
+	 */
+	this.isValidKey = function(keyCode) {
+		return (filterTheseKeys.indexOf(keyCode) === -1);
+	};
+}

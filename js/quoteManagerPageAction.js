@@ -1,10 +1,39 @@
-/* 
- * Copyright 2013, 2014 James Mortensen
- *
- *
+// quoteManagerPageAction.js
+
+/**
+
+The MIT License (MIT)
+
+Copyright (c) 2013, 2014 James Mortensen
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+*/
+
+
+/** 
  * This is a PageAction to allow power users to replace the quotes without hacking the code.
- *
  */
+
+var m_saveTimeout = 0;
+
+var keyFilterer = new KeyFilterer();
 
 function getListQuoteTemplate() {
     return '<li class="list-group-item quote"><input /><span class="remove-quote glyphicon glyphicon-minus"></span></li>';
@@ -12,7 +41,7 @@ function getListQuoteTemplate() {
 
 function loadQuotes(items) {
 	
-    console.log("items = " + JSON.stringify(items) );iii = items;
+    //console.log("items = " + JSON.stringify(items) );
     if(items["m_quotes"] == null) {
         items["m_quotes"] = m_quotes;
         chrome.storage.local.set(items);
@@ -36,7 +65,7 @@ function loadQuotes(items) {
 
 function updateQuotePreview(targetElem) {
 	var quote = $(targetElem).val();
-	console.debug('' + quote);
+	//console.debug('' + quote);
 	$('.preview').html(quote);
 }
 
@@ -53,13 +82,25 @@ function storeQuotes(quotesToStore, doClose) {
 		// 	});
 	        
 		// });
+		clearTimeout(m_saveTimeout);
+		m_saveTimeout = setTimeout(function() {
+			$('.modal-footer span.auto-save').fadeOut();
+		}, 250);
+		console.debug(quotesToStore.m_quotes[quotesToStore.m_quotes.length-1]);
 		if(doClose)
 		    window.close();
 	});
 }
 
 
+function showAutoSaveMessage() {
+	if($('.alert-danger:visible').length === 0) {
+		$('.modal-footer span.auto-save').fadeIn();
+	}
+}
+
 function saveQuotes(doClose) {
+	showAutoSaveMessage();
 	var quoteElements = $('.list-group-item.quote input');
 	var quoteCollection = [];
 	for(var i = 0; i < quoteElements.length; i++) {
@@ -71,7 +112,7 @@ function saveQuotes(doClose) {
 			return;
 		}
 	}
-	console.log(quoteCollection);
+	//console.debug(quoteCollection);
 	var quotesToStore = {};
 	quotesToStore.m_quotes = quoteCollection;
 	storeQuotes(quotesToStore, doClose);
@@ -118,7 +159,7 @@ if(typeof chrome.storage === 'undefined')
 					var script = document.createElement('script');
 					script.setAttribute('src', '/quotes.js');
 					script.addEventListener('load', function() {
-						//callback(m_quotes);
+						callback(m_quotes);
 					});
 					document.head.appendChild(script);
 				},
@@ -168,6 +209,8 @@ window.addEventListener("load", function() {
 
 	/**
 	 * This is the save operation for the new UX friendly list panel.
+	 *
+	 * @deprecated
 	 */
 	$('[data-action="save-list"]').click(function() {
 		var doClose = true;
@@ -182,7 +225,17 @@ window.addEventListener("load", function() {
 	/**
 	 * On click of a list item and on every keystroke, update the quote preview.
 	 */
-	$('.list-group').on('click keyup', '.quote input', function(elem) { updateQuotePreview(elem.target); });
+	$('.list-group').on('click keyup', '.quote input', function(event) { 
+		updateQuotePreview(event.target);
+		if(event.type === 'keyup') {
+			console.debug(event.keyCode + ' ::shift' + event.shiftKey + ' ::alt' + event.altKey + ' ::ctrl' + event.ctrlKey + ' ::meta' + event.metaKey);
+			var isValidKey = keyFilterer.isValidKey(event.keyCode);
+			if(isValidKey) {		
+				var doClose = false;
+				saveQuotes(doClose);
+			}
+		}
+	});
 
 	/**
 	 * Prompt for removal of any quotes selected.

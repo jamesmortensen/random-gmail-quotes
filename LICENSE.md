@@ -1,7 +1,3 @@
-// background.js
-
-/**
-
 The MIT License (MIT)
 
 Copyright (c) 2013, 2014 James Mortensen
@@ -23,26 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
-
-*/
-
- 
-
-function onRequest(request, sender, sendResponse) {
-  // Show the page action for the tab that the sender (content script)
-  // was on.
-  chrome.pageAction.show(sender.tab.id);
-
-  // Return nothing to let the connection be cleaned up.
-  sendResponse({});
-};
-
-// Listen for the content script to send a message to the background page.
-chrome.extension.onRequest.addListener(onRequest);
-
-
-
-chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
-    console.info("onMessage :: ");
-
-});
