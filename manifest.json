@@ -22,7 +22,7 @@
          "38": "images/S-logo-38.png"      
        },
        "default_title": "Edit Signatures", 
-       "default_popup": "quoteManagerPageAction.html"
+       "default_popup": "quoteManagerPageActionSimple.html"
    },
    "icons": { 
       "16": "images/S-logo-16.png",

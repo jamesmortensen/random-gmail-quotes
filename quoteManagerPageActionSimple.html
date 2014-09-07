@@ -1,0 +1,50 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+  <meta charset="utf-8"> 
+  <title>Signature Quote Manager</title> 
+  <link href="css/bootstrap.min.css" rel="stylesheet"> 
+  <link href="css/quoteManagerPageAction.css" rel="stylesheet">
+  <script type="text/javascript" src="js/quoteManagerPageAction.js"></script>
+</head>
+<body>
+  <div id="quotes_modal" class="fade in" style="display: block; ">
+    <div class="modal-header">
+      <a class="close" data-dismiss="modal" data-action="cancel">×</a>
+      <img class="icon" src="images/S-logo-48.png" alt="Signature Logo" />
+      <h3>Manage Signature Quotes</h3>
+      <h7 class="tagline">Add, edit, or remove signature quotes</h7>
+    </div>
+    <div class="modal-body">
+      <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">One quote per box.   <i>(You may use basic HTML, like &lt;i&gt;, &lt;b&gt;, &lt;a&gt;, etc.)</i></div>
+        <div class="panel-body quote-preview">
+          <span class="preview"></span>
+        </div>
+        <div class="panel-body quote-list">
+          <!-- List group -->
+          <ul class="list-group">
+            <!-- quotes go here -->
+          </ul>
+        </div>
+        <div class="panel-footer">
+          <a href="#" data-action="add-quote" class="btn btn-primary"><span class="add-quote glyphicon glyphicon-plus" ></span> Add New Quote</a>
+          <span style="display:none" class="alert alert-danger prompt-delete" role="alert">
+            <span class="">Delete the quote(s)?</span>
+            <a href="#" data-action="remove-quote" class="btn btn-danger"><span class="add-quote glyphicon glyphicon-minus" ></span> Delete Quote(s)</a>
+            <a href="#" data-action="keep-quote" class="btn btn-default">Keep Quote(s)</a>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#" data-action="json-panel" class="link-left">JSON Panel</a>
+      <a href="#" data-action="save-list" class="btn btn-primary">Save</a>
+      <a href="#" data-action="cancel" class="btn" data-dismiss="modal">Cancel</a>
+    </div>
+  </div>
+  <script src="js/lib/jquery-2.1.0.min.js"></script>
+</body>
+</html>
+

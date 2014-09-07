@@ -1,0 +1,23 @@
+{
+  "name": "randomSigQuotes",
+  "version": "0.0.0",
+  "description": "This is just for managing development dependencies like livereload",
+  "main": "",
+  "scripts": {
+    "watch": "lr-http-server -p 8090 .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jamesmortensen/random-gmail-quotes.git"
+  },
+  "author": "James Mortensen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jamesmortensen/random-gmail-quotes/issues"
+  },
+  "homepage": "https://github.com/jamesmortensen/random-gmail-quotes",
+  "devDependencies": {
+    "lr-http-server": "^0.1.0"
+  }
+}
