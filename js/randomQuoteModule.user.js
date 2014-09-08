@@ -61,7 +61,7 @@ if(window.location.hostname.match(/mail.google.com/) != null) {
      * Pull the quotes out of storage, or load the defaults from quotes.js, if none found
      */
     chrome.storage.local.get(null, function(items) {
-        console.log("items = " + JSON.stringify(items) );iii = items;
+        console.log("items = " + JSON.stringify(items) );
         if(items["m_quotes"] == null) {
             items["m_quotes"] = m_quotes;
             chrome.storage.local.set(items);
