@@ -31,7 +31,11 @@ THE SOFTWARE.
  * This is a PageAction to allow power users to replace the quotes without hacking the code.
  */
 
-var m_saveTimeout = 0;
+/**
+ * Global variable to help smooth out the save alert by only allowing one timeout to run
+ * at a time.
+ */
+var g_saveTimeout = 0;
 
 var keyFilterer;
 if(typeof KeyFilterer !== 'undefined')
@@ -44,14 +48,12 @@ function getListQuoteTemplate() {
 
 function loadQuotes(items) {
 	
-    //console.log("items = " + JSON.stringify(items) );
     if(items["m_quotes"] == null) {
         items["m_quotes"] = m_quotes;
         chrome.storage.local.set(items);
     }
     m_quotes = items["m_quotes"];
 
-    //$('[data-value="quotes"]').html( formatter.formatJson(JSON.stringify(m_quotes)) );
     $('[data-value="quotes"]').html( JSON.stringify(m_quotes) );
 
     var listQuoteTemplate = getListQuoteTemplate();
@@ -85,11 +87,25 @@ function storeQuotes(quotesToStore, doClose) {
 		// 	});
 	        
 		// });
-		clearTimeout(m_saveTimeout);
-		m_saveTimeout = setTimeout(function() {
+
+		/**
+		 * Smoothes out the success alert message fadeIn/fadeOut.
+		 */
+		clearTimeout(g_saveTimeout);
+		g_saveTimeout = setTimeout(function() {
 			$('.modal-footer span.auto-save').fadeOut();
 		}, 250);
-		console.debug(quotesToStore.m_quotes[quotesToStore.m_quotes.length-1]);
+
+		/**
+		 * Inject updated quotes in the current tab only.
+		 */
+		chrome.tabs.executeScript(null, 
+			{
+				code:'randomQuoteModule.quotes = ' + JSON.stringify(quotesToStore.m_quotes)
+			}
+		);
+		//console.debug(quotesToStore.m_quotes[quotesToStore.m_quotes.length-1]);
+
 		if(doClose)
 		    window.close();
 	});
@@ -101,6 +117,7 @@ function showAutoSaveMessage() {
 		$('.modal-footer span.auto-save').fadeIn();
 	}
 }
+
 
 function saveQuotes(doClose) {
 	showAutoSaveMessage();

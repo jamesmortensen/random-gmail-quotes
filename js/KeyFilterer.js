@@ -37,6 +37,7 @@ function KeyFilterer() {
 	/**
 	 * List of keyup keyCodes to filter out.
 	 */
+	var tab = 9;
 	var shiftKey = 16;
 	var ctrlKey = 17;
 	var altKey = 18;
@@ -46,6 +47,7 @@ function KeyFilterer() {
 	var right = 39;
 	var down = 40;
 	var keysToFilter = [
+		tab,
 		shiftKey,
 		ctrlKey,
 		altKey,
