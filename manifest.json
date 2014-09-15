@@ -2,14 +2,13 @@
    "content_scripts": [ {
       "exclude_globs": [  ],
       "exclude_matches": [  ],
-      "include_globs": [ "*//*google.com*" ],
+      "include_globs": [ "*//mail.google.com*" ],
       "js": ["js/lib/jquery-2.1.0.min.map", "js/lib/jquery-2.1.0.min.js",
           "quotes.js", "js/randomQuoteModule.user.js"
       ],
       "matches": [ "http://*/*", "https://*/*" ],
       "run_at": "document_idle"
    } ],
-   "converted_from_user_script": true,
    "description": "Chrome Extension to inject random quotes in your Gmail signature.",
    "name": "Random Signature Quotes for Gmail™",
    "version": "0.9.4",

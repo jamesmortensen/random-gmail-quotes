@@ -42,7 +42,7 @@ var randomQuoteModule = {};
 /**
  * bug: exclude/include userscript headers don't work in Chrome, so we filter manually
  */
-if(window.location.hostname.match(/mail.google.com/) != null) {
+//if(window.location.hostname.match(/mail.google.com/) != null) {
 
     /**
      * Insert the browser action icon in the address bar
@@ -187,4 +187,4 @@ if(window.location.hostname.match(/mail.google.com/) != null) {
      */
     unsafeWindow.randomQuoteModule = randomQuoteModule;
 
-}
+//}
