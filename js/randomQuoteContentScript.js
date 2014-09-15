@@ -1,4 +1,4 @@
-﻿// randomQuoteModule.user.js
+﻿// randomQuoteContentScript.js
 
 /**
 
