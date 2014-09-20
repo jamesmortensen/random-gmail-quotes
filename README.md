@@ -31,3 +31,5 @@
 // @history        0.9.2.2 Added in more quotes, upgraded jQuery to 2.1.0.
 
 // @history        0.9.3  Modified the quote manager to make it easier to use.
+
+// @history        1.0.0  Deployed 1.0.0 to the Chrome Web Store.
