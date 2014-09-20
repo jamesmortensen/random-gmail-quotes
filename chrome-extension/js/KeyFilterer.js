@@ -34,39 +34,39 @@ THE SOFTWARE.
  */
 function KeyFilterer() {
 
-	/**
-	 * List of keyup keyCodes to filter out.
-	 */
-	var tab = 9;
-	var shiftKey = 16;
-	var ctrlKey = 17;
-	var altKey = 18;
-	var cmdKey = 91;
-	var left = 37;
-	var up = 38;
-	var right = 39;
-	var down = 40;
-	var keysToFilter = [
-		tab,
-		shiftKey,
-		ctrlKey,
-		altKey,
-		cmdKey,
-		left,
-		up,
-		right,
-		down
-	];
-	keysToFilter.sort();
+    /**
+     * List of keyup keyCodes to filter out.
+     */
+    var tab = 9;
+    var shiftKey = 16;
+    var ctrlKey = 17;
+    var altKey = 18;
+    var cmdKey = 91;
+    var left = 37;
+    var up = 38;
+    var right = 39;
+    var down = 40;
+    var keysToFilter = [
+        tab,
+        shiftKey,
+        ctrlKey,
+        altKey,
+        cmdKey,
+        left,
+        up,
+        right,
+        down
+    ];
+    keysToFilter.sort();
 
 
-	/**
-	 * Takes a keyCode and returns true if the key is not to be filtered out.
-	 *
-	 * @param {Integer} keyCode The keyCode to check against the filter.
-	 * @return {Boolean} true if keyCode is not in the filter; otherwise, false.
-	 */
-	this.isValidKey = function(keyCode) {
-		return (keysToFilter.indexOf(keyCode) === -1);
-	};
+    /**
+     * Takes a keyCode and returns true if the key is not to be filtered out.
+     *
+     * @param {Integer} keyCode The keyCode to check against the filter.
+     * @return {Boolean} true if keyCode is not in the filter; otherwise, false.
+     */
+    this.isValidKey = function(keyCode) {
+        return (keysToFilter.indexOf(keyCode) === -1);
+    };
 }

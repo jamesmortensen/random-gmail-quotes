@@ -1,4 +1,4 @@
-﻿// randomQuoteContentScript.js
+// randomQuoteContentScript.js
 
 /**
 
@@ -57,34 +57,34 @@ randomQuoteModule = {
  */
 chrome.storage.local.get(null, function(items) {
     //console.debug("items = " + JSON.stringify(items) );
-    if(items["m_quotes"] == null) {
+    if (items["m_quotes"] == null) {
         items["m_quotes"] = m_quotes;
         chrome.storage.local.set(items);
     }
     m_quotes = items["m_quotes"];
 
     randomQuoteModule.quotesLoaded = true;
-    if(randomQuoteModule.pageLoaded == true && randomQuoteModule.quotesLoaded == true) {
+    if (randomQuoteModule.pageLoaded == true && randomQuoteModule.quotesLoaded == true) {
         loadStageTwo();
     }
 
 });
 
 
-window.addEventListener("load", function() { 
+window.addEventListener("load", function() {
     randomQuoteModule.pageLoaded = true;
-    if(randomQuoteModule.pageLoaded == true && randomQuoteModule.quotesLoaded == true) {
+    if (randomQuoteModule.pageLoaded == true && randomQuoteModule.quotesLoaded == true) {
         loadStageTwo();
-    } 
+    }
 });
-    
+
 
 /**
  * This runs once two conditions are met: The page has loaded, and the quotes have loaded.
  */
 function loadStageTwo() {
-    if(randomQuoteModule.init == true) return;
-    
+    if (randomQuoteModule.init == true) return;
+
     randomQuoteModule.init = true;
     randomQuoteModule.quotes = m_quotes;
 
@@ -95,35 +95,35 @@ function loadStageTwo() {
     function injectQuoteInTextarea() {
 
         var messageBox = null;
-        messageBox = $('[g_editable="true"]').eq($('[g_editable="true"]').length-1);
+        messageBox = $('[g_editable="true"]').eq($('[g_editable="true"]').length - 1);
 
-        if(messageBox.hasClass('sigadded')) return;
+        if (messageBox.hasClass('sigadded')) return;
 
         /**
          * Don't inject quotes in the textareas in the settings page, that's just not cool...
          */
-        if(messageBox.attr('aria-label') != "Message Body") return;
-        
+        if (messageBox.attr('aria-label') != "Message Body") return;
+
         /**
          * There's no quote block, so inject at the bottom
          */
-        if(messageBox.find('div.gmail_quote').html() == undefined && messageBox.html() != undefined
-              && messageBox.parent().parent().parent().parent().parent().parent().parent().parent().parent().find('[aria-label="Show trimmed content"]').length == 0) {
-            
-            
+        if (messageBox.find('div.gmail_quote').html() == undefined && messageBox.html() != undefined
+            && messageBox.parent().parent().parent().parent().parent().parent().parent().parent().parent().find('[aria-label="Show trimmed content"]').length == 0) {
+
+
             messageBox.addClass('sigadded');
             messageBox.action = messageBox.append;
 
-        // saying no to injecting quoets in replies for now...
-        /*} else if(messageBox.html() != undefined 
-                && messageBox.parent().parent().parent().parent().parent().parent().parent().parent().parent().find('[aria-label="Show trimmed content"]').length != 0) {
-            console.info("There's a quote, so let's go ahead and insert a quote before the reply...");
-            messageBox.addClass('sigadded');
-            messageBox.find('div.gmail_quote').before("Reply Sig goes here<br><br>");
-            messageBox.find('.gmail_extra').find('div[dir="ltr"]').append("HRYHRYR");
-            //messageBox = $('[g_editable="true"]').find('div.gmail_quote');
-            messageBox.action = messageBox.before;
-            messageBox=null;*/
+            // saying no to injecting quoets in replies for now...
+            /*} else if(messageBox.html() != undefined 
+                    && messageBox.parent().parent().parent().parent().parent().parent().parent().parent().parent().find('[aria-label="Show trimmed content"]').length != 0) {
+                console.info("There's a quote, so let's go ahead and insert a quote before the reply...");
+                messageBox.addClass('sigadded');
+                messageBox.find('div.gmail_quote').before("Reply Sig goes here<br><br>");
+                messageBox.find('.gmail_extra').find('div[dir="ltr"]').append("HRYHRYR");
+                //messageBox = $('[g_editable="true"]').find('div.gmail_quote');
+                messageBox.action = messageBox.before;
+                messageBox=null;*/
 
         } else {
 
@@ -134,28 +134,28 @@ function loadStageTwo() {
         /**
          * Assuming there is a textarea, inject a quote
          */
-        if(messageBox != null && messageBox.action == messageBox.append) {
+        if (messageBox != null && messageBox.action == messageBox.append) {
             setTimeout(function() {
-                messageBox.action("<br><br>"+getRandomQuote()+"<br><br>");
+                messageBox.action("<br><br>" + getRandomQuote() + "<br><br>");
             }, 1000);
-        }   
+        }
     }
 
-    
+
     /**
      * Get a random quote from the loaded quote list.
      *
      * @return {String} A quote randomly selected.
      */
     function getRandomQuote() {
-        
+
         var len = randomQuoteModule.quotes.length;
 
         var index = (new Date().getTime() % len);
 
         return randomQuoteModule.quotes[index];
-    }            
-    
+    }
+
 
     /**
      * When DOM nodes are inserted in the page, look for a compose window and inject.
@@ -163,9 +163,9 @@ function loadStageTwo() {
     window.addEventListener("DOMNodeInserted", function() {
 
         injectQuoteInTextarea();
-        
+
     }, false);
-        
+
 }
 
 
@@ -173,6 +173,13 @@ function loadStageTwo() {
  * Quick sanity check to make sure algorithm doesn't play favorites with any quotes.
  */
 var sanityCheck = function() {
-    var a=[];for(var i = 0;i<m_quotes.length;i++) { a.push(0);}var _t = 1376899008256; for(var i = 0; i <138; i++) { var index = ((_t+i) % m_quotes.length); console.log(index); a[index]++;}
+    var a = [];
+    for (var i = 0; i < m_quotes.length; i++) {
+        a.push(0);
+    }
+    var _t = 1376899008256;
+    for (var i = 0; i < 138; i++) {
+        var index = ((_t + i) % m_quotes.length); console.log(index); a[index]++;
+    }
 };
 
