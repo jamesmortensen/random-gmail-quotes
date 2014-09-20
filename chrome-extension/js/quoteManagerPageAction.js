@@ -142,7 +142,7 @@ function saveQuotes(doClose) {
 function promptForQuoteRemoval(event) {
 	var listElem = $(event.target).parent();
 	var quote = listElem.find('input').val();
-	console.log('quote to remove = ' + quote);
+	//console.debug('quote to remove = ' + quote);
 	listElem.addClass('alert').addClass('alert-danger');
 	$('.prompt-delete').fadeIn();
 }
@@ -243,17 +243,21 @@ window.addEventListener("load", function() {
 	$('[data-action="add-quote"]').click(addQuoteListBox);
 
 	/**
-	 * On click of a list item and on every keystroke, update the quote preview.
+	 * On every keystroke, or on cut/paste, update the quote preview.
 	 */
-	$('.list-group').on('click keyup', '.quote input', function(event) { 
+	$('.list-group').on('keyup cut paste', '.quote input', function(event) { 
 		updateQuotePreview(event.target);
+		var doClose = false;
 		if(event.type === 'keyup') {
-			console.debug(event.keyCode + ' ::shift' + event.shiftKey + ' ::alt' + event.altKey + ' ::ctrl' + event.ctrlKey + ' ::meta' + event.metaKey);
+			//console.debug(event.keyCode + ' ::shift' + event.shiftKey + ' ::alt' + event.altKey + ' ::ctrl' + event.ctrlKey + ' ::meta' + event.metaKey);
 			var isValidKey = keyFilterer.isValidKey(event.keyCode);
-			if(isValidKey) {		
-				var doClose = false;
+			if(isValidKey) {
 				saveQuotes(doClose);
 			}
+		} else if(event.type === 'cut' || event.type === 'paste') {
+			setTimeout(function() {
+				saveQuotes(doClose);
+			}, 0);
 		}
 	});
 

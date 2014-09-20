@@ -35,7 +35,7 @@ function onRequest(request, sender, sendResponse) {
 
   // Return nothing to let the connection be cleaned up.
   sendResponse({});
-};
+}
 
 // Listen for the content script to send a message to the background page.
 chrome.extension.onRequest.addListener(onRequest);
@@ -43,6 +43,6 @@ chrome.extension.onRequest.addListener(onRequest);
 
 
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
-    console.info("onMessage :: ");
+    // console.info("onMessage :: ");
 
 });
