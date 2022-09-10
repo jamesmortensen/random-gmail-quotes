@@ -4,7 +4,7 @@
 
 The MIT License (MIT)
 
-Copyright (c) 2013, 2014 James Mortensen
+Copyright (c) 2013, 2014, 2022 James Mortensen
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -31,14 +31,14 @@ THE SOFTWARE.
 function onRequest(request, sender, sendResponse) {
     // Show the page action for the tab that the sender (content script)
     // was on.
-    chrome.pageAction.show(sender.tab.id);
+    chrome.action.show(sender.tab.id);
 
     // Return nothing to let the connection be cleaned up.
     sendResponse({});
 }
 
 // Listen for the content script to send a message to the background page.
-chrome.extension.onRequest.addListener(onRequest);
+//chrome.extension.onRequest.addListener(onRequest); // deprecated
 
 
 

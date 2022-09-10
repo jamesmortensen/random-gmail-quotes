@@ -76,40 +76,55 @@ function updateQuotePreview(targetElem) {
 
 
 function storeQuotes(quotesToStore, doClose) {
-    chrome.storage.local.set(quotesToStore, function() {
-        // chrome.tabs.getCurrent(function(tab) {
-        // 	var tabId = tab.id;
-        // 	var injectDetails = {
-        // 		code: 'm_quotes = ' + quotesToStore.m_quotes
-        // 	};
-        // 	chrome.tabs.executeScript(tabId, injectDetails, function(results) {
-        // 		console.log(results);
-        // 	});
-
-        // });
+    chrome.storage.local.set(quotesToStore, function () {
 
         /**
          * Smoothes out the success alert message fadeIn/fadeOut.
          */
         clearTimeout(g_saveTimeout);
-        g_saveTimeout = setTimeout(function() {
+        g_saveTimeout = setTimeout(function () {
             $('.modal-footer span.auto-save').fadeOut();
         }, 250);
 
-        /**
-         * Inject updated quotes in the current tab only.
-         */
-        chrome.tabs.executeScript(null,
-        {
-            code: 'randomQuoteModule.quotes = ' + JSON.stringify(quotesToStore.m_quotes)
-        }
-        );
-        //console.debug(quotesToStore.m_quotes[quotesToStore.m_quotes.length-1]);
+        // chrome.tabs.query(
+        //     {
+        //         url: 'https://mail.google.com/*'
+        //     },
+        //     (tabs) => {
+        //         updateQuotesInAllGmailTabs(tabs, quotesToStore);
+        //     }
+        // );
 
         if (doClose)
             window.close();
     });
 }
+
+// function updateQuotesInAllGmailTabs(tabs, quotesToStore) {
+//     tabs.forEach((tab, i) => {
+//         if (i > 0) return;  // this still updates all the tabs. We don't need to iterate through all.
+        // chrome.scripting.executeScript(
+        //     {
+        //         injectImmediately: true,
+        //         func: storeQuotesInMetaTag,
+        //         args: [quotesToStore],
+        //         target: { tabId: tab.id }
+        //     }
+        // )
+//     });
+// }
+
+// function storeQuotesInMetaTag(quotesToStore) {
+//     var metaQuotesHeadElement;
+//     if (document.getElementById('m_quotes') === null) {
+//         metaQuotesHeadElement = document.createElement('meta');
+//         metaQuotesHeadElement.id = 'm_quotes';
+//         document.head.appendChild(metaQuotesHeadElement);
+//     } else {
+//         metaQuotesHeadElement = document.getElementById('m_quotes');
+//     }
+//     metaQuotesHeadElement.setAttribute('data-quotes', quotesToStore.m_quotes.join('&#39;&#44; &#39;'));
+// }
 
 
 function showAutoSaveMessage() {
@@ -175,36 +190,36 @@ if (typeof chrome.storage === 'undefined')
     var chrome = {
         storage: {
             local: {
-                get: function(_null, callback) {
+                get: function (_null, callback) {
                     var script = document.createElement('script');
                     script.setAttribute('src', '/quotes.js');
-                    script.addEventListener('load', function() {
+                    script.addEventListener('load', function () {
                         callback(m_quotes);
                     });
                     document.head.appendChild(script);
                 },
-                set: function() {}
+                set: function () { }
             }
         }
     };
 
 
 
-window.addEventListener("load", function() {
+window.addEventListener("load", function () {
 
     chrome.storage.local.get(null, loadQuotes);
 
     /**
      * This is the save action for the JSON panel, which we keep simply for backwards compatibility.
      */
-    $('[data-action="save"]').click(function() {
+    $('[data-action="save"]').click(function () {
         var items = {};
         if ($('[data-value="quotes"]').val().match(/\[\".*/g) != null) {
             items["m_quotes"] = JSON.parse($('[data-value="quotes"]').val());
         } else {
             items["m_quotes"] = [$('[data-value="quotes"]').val()];
         }
-        chrome.storage.local.set(items, function() {
+        chrome.storage.local.set(items, function () {
             window.close();
         });
         //chrome.tabs.executeScript(null,{code:"document.body.dataset['quote'] = 'fasfdtest';document.body.style.backgroundColor='orange';"});
@@ -213,17 +228,17 @@ window.addEventListener("load", function() {
     /**
      * Close the panel.
      */
-    $('[data-action="cancel"]').click(function() {
+    $('[data-action="cancel"]').click(function () {
         window.close();
     });
 
     /**
      * Show the "old" JSON panel most people don't like, and be able to switch back.
      */
-    $('[data-action="json-panel"]').click(function() {
+    $('[data-action="json-panel"]').click(function () {
         window.location.href = '/quoteManagerPageAction.html';
     });
-    $('[data-action="list-panel"]').click(function() {
+    $('[data-action="list-panel"]').click(function () {
         window.location.href = '/quoteManagerPageActionSimple.html';
     });
 
@@ -232,7 +247,7 @@ window.addEventListener("load", function() {
      *
      * @deprecated
      */
-    $('[data-action="save-list"]').click(function() {
+    $('[data-action="save-list"]').click(function () {
         var doClose = true;
         saveQuotes(doClose);
     });
@@ -245,7 +260,7 @@ window.addEventListener("load", function() {
     /**
      * On every keystroke, or on cut/paste, update the quote preview.
      */
-    $('.list-group').on('keyup cut paste', '.quote input', function(event) {
+    $('.list-group').on('keyup cut paste', '.quote input', function (event) {
         updateQuotePreview(event.target);
         var doClose = false;
         if (event.type === 'keyup') {
@@ -255,7 +270,7 @@ window.addEventListener("load", function() {
                 saveQuotes(doClose);
             }
         } else if (event.type === 'cut' || event.type === 'paste') {
-            setTimeout(function() {
+            setTimeout(function () {
                 saveQuotes(doClose);
             }, 0);
         }
@@ -274,7 +289,7 @@ window.addEventListener("load", function() {
     /**
      * Uncheck items marked for deletion.
      */
-    $('[data-action="keep-quote"]').click(function() {
+    $('[data-action="keep-quote"]').click(function () {
         $('.list-group .quote.alert-danger').removeClass('alert').removeClass('alert-danger');
         $(this).parent().fadeOut();
     });
