@@ -13,7 +13,7 @@
    "name": "Random Signature Quotes for Gmail™",
    "version": "2.0.0",
    "manifest_version": 3,
-   "permissions": ["tabs", "storage", "scripting"],
+   "permissions": ["storage"],
    "host_permissions": [
       "*://mail.google.com/*"
    ],
@@ -33,8 +33,5 @@
       "16": "images/S-logo-16.png",
       "48": "images/S-logo-48.png",
       "128": "images/S-logo-128.png" 
-   },
-   "background": {
-      "service_worker": "js/background.js"
    }
 }

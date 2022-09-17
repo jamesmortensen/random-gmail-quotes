@@ -4,7 +4,7 @@
 
 The MIT License (MIT)
 
-Copyright (c) 2013, 2014 James Mortensen
+Copyright (c) 2013, 2014, 2022 James Mortensen
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -41,6 +41,7 @@ var keyFilterer;
 if (typeof KeyFilterer !== 'undefined')
     keyFilterer = new KeyFilterer();
 
+var elementFader;
 
 function getListQuoteTemplate() {
     return '<li class="list-group-item quote"><input /><span class="remove-quote glyphicon glyphicon-minus"></span></li>';
@@ -83,53 +84,20 @@ function storeQuotes(quotesToStore, doClose) {
          */
         clearTimeout(g_saveTimeout);
         g_saveTimeout = setTimeout(function () {
-            $('.modal-footer span.auto-save').fadeOut();
+            //$('.modal-footer span.auto-save').fadeOut();
+            elementFader.fadeOut();
         }, 250);
-
-        // chrome.tabs.query(
-        //     {
-        //         url: 'https://mail.google.com/*'
-        //     },
-        //     (tabs) => {
-        //         updateQuotesInAllGmailTabs(tabs, quotesToStore);
-        //     }
-        // );
 
         if (doClose)
             window.close();
     });
 }
 
-// function updateQuotesInAllGmailTabs(tabs, quotesToStore) {
-//     tabs.forEach((tab, i) => {
-//         if (i > 0) return;  // this still updates all the tabs. We don't need to iterate through all.
-        // chrome.scripting.executeScript(
-        //     {
-        //         injectImmediately: true,
-        //         func: storeQuotesInMetaTag,
-        //         args: [quotesToStore],
-        //         target: { tabId: tab.id }
-        //     }
-        // )
-//     });
-// }
-
-// function storeQuotesInMetaTag(quotesToStore) {
-//     var metaQuotesHeadElement;
-//     if (document.getElementById('m_quotes') === null) {
-//         metaQuotesHeadElement = document.createElement('meta');
-//         metaQuotesHeadElement.id = 'm_quotes';
-//         document.head.appendChild(metaQuotesHeadElement);
-//     } else {
-//         metaQuotesHeadElement = document.getElementById('m_quotes');
-//     }
-//     metaQuotesHeadElement.setAttribute('data-quotes', quotesToStore.m_quotes.join('&#39;&#44; &#39;'));
-// }
-
 
 function showAutoSaveMessage() {
     if ($('.alert-danger:visible').length === 0) {
-        $('.modal-footer span.auto-save').fadeIn();
+        //$('.modal-footer span.auto-save').fadeIn();
+        elementFader.fadeIn();
     }
 }
 
@@ -207,6 +175,8 @@ if (typeof chrome.storage === 'undefined')
 
 window.addEventListener("load", function () {
 
+    elementFader = new ElementFader('.modal-footer span.auto-save');
+
     chrome.storage.local.get(null, loadQuotes);
 
     /**
@@ -222,7 +192,6 @@ window.addEventListener("load", function () {
         chrome.storage.local.set(items, function () {
             window.close();
         });
-        //chrome.tabs.executeScript(null,{code:"document.body.dataset['quote'] = 'fasfdtest';document.body.style.backgroundColor='orange';"});
     });
 
     /**
@@ -240,16 +209,6 @@ window.addEventListener("load", function () {
     });
     $('[data-action="list-panel"]').click(function () {
         window.location.href = '/quoteManagerPageActionSimple.html';
-    });
-
-    /**
-     * This is the save operation for the new UX friendly list panel.
-     *
-     * @deprecated
-     */
-    $('[data-action="save-list"]').click(function () {
-        var doClose = true;
-        saveQuotes(doClose);
     });
 
     /**

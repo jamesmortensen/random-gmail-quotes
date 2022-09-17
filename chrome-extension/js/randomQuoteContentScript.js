@@ -36,15 +36,7 @@ THE SOFTWARE.
  * This object is exposed to the outside of the content script module to allow 
  * the extension page action to update the quotes on a save event.
  */
-var randomQuoteModule = {};
-
-
-/**
- * Insert the browser action icon in the address bar
- */
-// chrome.extension.sendRequest({}, function(response) {}); // deprecated
-
-randomQuoteModule = {
+var randomQuoteModule = {
     init: false,
     messageBox: null,
     quotes: null,
