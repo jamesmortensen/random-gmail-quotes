@@ -14,9 +14,6 @@
    "version": "2.0.1",
    "manifest_version": 3,
    "permissions": ["storage"],
-   "host_permissions": [
-      "*://mail.google.com/*"
-   ],
    "web_accessible_resources": [{
       "resources": ["js/lib/jquery-3.6.1.min.map"],
       "matches": ["*://mail.google.com/*"]
