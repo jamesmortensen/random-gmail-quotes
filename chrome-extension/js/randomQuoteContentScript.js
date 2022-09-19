@@ -136,13 +136,13 @@ function loadStageTwo() {
     async function getRandomQuote() {
 
         randomQuoteModule.quotes = (await chrome.storage.local.get('m_quotes')).m_quotes;
-        console.log('updated quote = ' + randomQuoteModule.quotes[29]);
+        //console.log('updated quote = ' + randomQuoteModule.quotes[29]);
 
         var len = randomQuoteModule.quotes.length;
 
         var index = (new Date().getTime() % len);
 
-        return randomQuoteModule.quotes[29];
+        return randomQuoteModule.quotes[index];
     }
 
 
