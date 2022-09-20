@@ -142,7 +142,14 @@ function loadStageTwo() {
 
         var index = (new Date().getTime() % len);
 
+        //if(isDevMode())
+          //  index = 29;
+
         return randomQuoteModule.quotes[index];
+    }
+
+    function isDevMode() {
+        return chrome.runtime.getURL('').split('/')[2] !== 'kbjehpegjjfajhnommoeefdjhlhbgojh';
     }
 
 

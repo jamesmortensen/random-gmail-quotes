@@ -6,7 +6,7 @@
       "js": ["js/lib/jquery-3.6.1.min.js",
           "quotes.js", "js/randomQuoteContentScript.js"
       ],
-      "matches": [ "http://*/*", "https://*/*" ],
+      "matches": [ "*://mail.google.com/*" ],
       "run_at": "document_idle"
    } ],
    "description": "Chrome Extension to inject random quotes in your Gmail signature.",
