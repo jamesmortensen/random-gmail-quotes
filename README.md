@@ -32,5 +32,8 @@
 
 // @history        0.9.3  Modified the quote manager to make it easier to use.
 
+// @history        1.0.0  Deployed 1.0.0 to the Chrome Web Store.
+
 // @history        2.0.0  Upgrade to manifest v3. Added ability to have quotes with replies.
 
+// @history        2.0.1  Fixed bug where only the 29th quote in the list is inserted.
