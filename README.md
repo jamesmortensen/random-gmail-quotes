@@ -3,7 +3,7 @@
   
   ----
   
-  Copyright 2013, 2014, James Mortensen
+  Copyright 2013, 2014, 2022, James Mortensen
  
   I made this extension because I couldn't find a tool to let me randomly inject my own user-selected
   quotes into my email signature. I specifically wanted the quotes to be hand-selected. 
@@ -33,3 +33,7 @@
 // @history        0.9.3  Modified the quote manager to make it easier to use.
 
 // @history        1.0.0  Deployed 1.0.0 to the Chrome Web Store.
+
+// @history        2.0.0  Upgrade to manifest v3. Added ability to have quotes with replies.
+
+// @history        2.0.1  Fixed bug where only the 29th quote in the list is inserted.

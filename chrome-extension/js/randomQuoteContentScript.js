@@ -4,7 +4,7 @@
 
 The MIT License (MIT)
 
-Copyright (c) 2013, 2014 James Mortensen
+Copyright (c) 2013, 2014, 2022 James Mortensen
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -36,15 +36,7 @@ THE SOFTWARE.
  * This object is exposed to the outside of the content script module to allow 
  * the extension page action to update the quotes on a save event.
  */
-var randomQuoteModule = {};
-
-
-/**
- * Insert the browser action icon in the address bar
- */
-chrome.extension.sendRequest({}, function(response) {});
-
-randomQuoteModule = {
+var randomQuoteModule = {
     init: false,
     messageBox: null,
     quotes: null,
@@ -55,7 +47,7 @@ randomQuoteModule = {
 /**
  * Pull the quotes out of storage, or load the defaults from quotes.js, if none found
  */
-chrome.storage.local.get(null, function(items) {
+chrome.storage.local.get(null, function (items) {
     //console.debug("items = " + JSON.stringify(items) );
     if (items["m_quotes"] == null) {
         items["m_quotes"] = m_quotes;
@@ -71,7 +63,7 @@ chrome.storage.local.get(null, function(items) {
 });
 
 
-window.addEventListener("load", function() {
+window.addEventListener("load", function () {
     randomQuoteModule.pageLoaded = true;
     if (randomQuoteModule.pageLoaded == true && randomQuoteModule.quotesLoaded == true) {
         loadStageTwo();
@@ -88,91 +80,92 @@ function loadStageTwo() {
     randomQuoteModule.init = true;
     randomQuoteModule.quotes = m_quotes;
 
-
-    /**
-     * This handles injecting the quote into the Gmail compose textarea.
-     */
     function injectQuoteInTextarea() {
 
-        var messageBox = null;
+        let messageBox = null;
         messageBox = $('[g_editable="true"]').eq($('[g_editable="true"]').length - 1);
 
         if (messageBox.hasClass('sigadded')) return;
 
-        /**
-         * Don't inject quotes in the textareas in the settings page, that's just not cool...
-         */
-        if (messageBox.attr('aria-label') != "Message Body") return;
+        if (isNotAMessageBodyTextarea(messageBox)) 
+            return;
 
-        /**
-         * There's no quote block, so inject at the bottom
-         */
-        if (messageBox.find('div.gmail_quote').html() == undefined && messageBox.html() != undefined
-            && messageBox.parent().parent().parent().parent().parent().parent().parent().parent().parent().find('[aria-label="Show trimmed content"]').length == 0) {
-
-
+        if (isComposing(messageBox) || isReplying(messageBox)) {
             messageBox.addClass('sigadded');
             messageBox.action = messageBox.append;
 
-            // saying no to injecting quoets in replies for now...
-            /*} else if(messageBox.html() != undefined 
-                    && messageBox.parent().parent().parent().parent().parent().parent().parent().parent().parent().find('[aria-label="Show trimmed content"]').length != 0) {
-                console.info("There's a quote, so let's go ahead and insert a quote before the reply...");
-                messageBox.addClass('sigadded');
-                messageBox.find('div.gmail_quote').before("Reply Sig goes here<br><br>");
-                messageBox.find('.gmail_extra').find('div[dir="ltr"]').append("HRYHRYR");
-                //messageBox = $('[g_editable="true"]').find('div.gmail_quote');
-                messageBox.action = messageBox.before;
-                messageBox=null;*/
-
         } else {
-
             // there is no textarea to inject into...
             messageBox = null;
         }
 
-        /**
-         * Assuming there is a textarea, inject a quote
-         */
-        if (messageBox != null && messageBox.action == messageBox.append) {
-            setTimeout(function() {
-                messageBox.action("<br><br>" + getRandomQuote() + "<br><br>");
-            }, 1000);
+        if (textAreaExists(messageBox)) {
+            injectQuote(messageBox);
         }
     }
 
+    function isNotAMessageBodyTextarea(messageBox) {
+        return messageBox.attr('aria-label') != "Message Body";
+    }
+
+    function isComposing(messageBox) {
+        return messageBox.find('div.gmail_quote').html() == undefined && messageBox.html() != undefined
+            && messageBox.parent().parent().parent().parent().parent().parent().parent().parent().parent().find('[aria-label="Show trimmed content"]').length == 0;
+    }
+
+    function isReplying(messageBox) {
+        return messageBox.html() != undefined
+            && messageBox.parent().parent().parent().parent().parent().parent().parent().parent().parent().find('[aria-label="Show trimmed content"]').length != 0;
+    }
+
+    function textAreaExists(messageBox) {
+        return messageBox != null && messageBox.action == messageBox.append;
+    }
+
+    function injectQuote(messageBox) {
+        setTimeout(async function () {
+            messageBox.action("<br><br>" + await getRandomQuote() + "<br><br>");
+        }, 1000);
+    }
 
     /**
      * Get a random quote from the loaded quote list.
      *
      * @return {String} A quote randomly selected.
      */
-    function getRandomQuote() {
+    async function getRandomQuote() {
+
+        randomQuoteModule.quotes = (await chrome.storage.local.get('m_quotes')).m_quotes;
+        //console.log('updated quote = ' + randomQuoteModule.quotes[29]);
 
         var len = randomQuoteModule.quotes.length;
 
         var index = (new Date().getTime() % len);
 
+        //if(isDevMode())
+          //  index = 29;
+
         return randomQuoteModule.quotes[index];
+    }
+
+    function isDevMode() {
+        return chrome.runtime.getURL('').split('/')[2] !== 'kbjehpegjjfajhnommoeefdjhlhbgojh';
     }
 
 
     /**
      * When DOM nodes are inserted in the page, look for a compose window and inject.
      */
-    window.addEventListener("DOMNodeInserted", function() {
-
+    window.addEventListener("DOMNodeInserted", function () {
         injectQuoteInTextarea();
-
     }, false);
-
 }
 
 
 /**
  * Quick sanity check to make sure algorithm doesn't play favorites with any quotes.
  */
-var sanityCheck = function() {
+var sanityCheck = function () {
     var a = [];
     for (var i = 0; i < m_quotes.length; i++) {
         a.push(0);
