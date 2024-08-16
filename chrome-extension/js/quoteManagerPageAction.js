@@ -4,7 +4,7 @@
 
 The MIT License (MIT)
 
-Copyright (c) 2013, 2014, 2022 James Mortensen
+Copyright (c) 2013, 2014, 2022, 2023 James Mortensen
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -175,7 +175,9 @@ if (typeof chrome.storage === 'undefined')
 
 window.addEventListener("load", function () {
 
-    elementFader = new ElementFader('.modal-footer span.auto-save');
+    elementFader = typeof ElementFader !== 'undefined' 
+        ? new ElementFader('.modal-footer span.auto-save')
+        : null;
 
     chrome.storage.local.get(null, loadQuotes);
 

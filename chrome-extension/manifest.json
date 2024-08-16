@@ -11,7 +11,7 @@
    } ],
    "description": "Chrome Extension to inject random quotes in your Gmail signature.",
    "name": "Random Signature Quotes for Gmail™",
-   "version": "2.0.1",
+   "version": "2.0.2",
    "manifest_version": 3,
    "permissions": ["storage"],
    "web_accessible_resources": [{
