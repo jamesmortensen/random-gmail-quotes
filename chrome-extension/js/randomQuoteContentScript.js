@@ -4,7 +4,7 @@
 
 The MIT License (MIT)
 
-Copyright (c) 2013, 2014, 2022 James Mortensen
+Copyright (c) 2013, 2014, 2022, 2024 James Mortensen
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -156,9 +156,11 @@ function loadStageTwo() {
     /**
      * When DOM nodes are inserted in the page, look for a compose window and inject.
      */
-    window.addEventListener("DOMNodeInserted", function () {
-        injectQuoteInTextarea();
-    }, false);
+    const observer = new MutationObserver(mutationList =>  
+        mutationList.filter(m => m.type === 'childList').forEach(m => {  
+            injectQuoteInTextarea();
+        }));  
+    observer.observe(document.body,{childList: true, subtree: true});  
 }
 
 

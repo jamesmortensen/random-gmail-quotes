@@ -3,7 +3,7 @@
   
   ----
   
-  Copyright 2013, 2014, 2022, 2023 James Mortensen
+  Copyright 2013, 2014, 2022, 2023, 2024 James Mortensen
  
   I made this extension because I couldn't find a tool to let me randomly inject my own user-selected
   quotes into my email signature. I specifically wanted the quotes to be hand-selected. 
@@ -40,3 +40,4 @@
 
 // @history        2.0.2  Fixed bug where JSON panel wouldn't load/save quotes. Fixed bug where default quotes not loaded on installation.
 
+// @history        2.0.3  Fixed issue where Google removed deprecated DOMNodeInserted event, preventing quote insertion. Replaced with MutationObserver.
