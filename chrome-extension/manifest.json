@@ -28,11 +28,5 @@
       "16": "images/S-logo-16.png",
       "48": "images/S-logo-48.png",
       "128": "images/S-logo-128.png" 
-   },
-   "browser_specific_settings": {
-      "gecko": {
-         "id": "kbjehpegjjfajhnommoeefdjhlhbgojh",
-         "strict_min_version": "109.0"
-      }
    }
 }

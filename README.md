@@ -10,9 +10,6 @@
  
   Since there wasn't an existing solution, I made one.
  
-  To replace the quotes with your own, edit the quotes.js file. You may use HTML markup, but be sure
-  to escape your quotation marks!
-
   The best option for managing the quotes is to use the quote manager. On the right side of the address
   bar in your Gmail tab, click the page action icon. This pulls up a nice quote editor where you can 
   add quotes, edit quotes, and remove quotes.
@@ -40,4 +37,5 @@
 
 // @history        2.0.2  Fixed bug where JSON panel wouldn't load/save quotes. Fixed bug where default quotes not loaded on installation.
 
-// @history        2.0.3  Fixed issue where Google removed deprecated DOMNodeInserted event, preventing quote insertion. Replaced with MutationObserver.
+// @history        2.0.3  Fixed issue where Google removed deprecated DOMNodeInserted event, preventing quote insertion. Replaced with MutationObserver. Initial release for the Firefox browser.
+
